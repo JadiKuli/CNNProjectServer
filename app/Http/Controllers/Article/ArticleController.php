@@ -17,4 +17,24 @@ class ArticleController extends BaseContoller
             200
         );
     }
+
+    // Create Article
+    public function createArticle(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        $article = Article::create([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        return $this->successResponse(
+            $article,
+            "Article created successfully",
+            201
+        );
+    }
 }
