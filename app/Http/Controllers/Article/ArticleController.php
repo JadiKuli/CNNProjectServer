@@ -18,6 +18,19 @@ class ArticleController extends BaseContoller
         );
     }
 
+    // Fetch Article By ID
+    public function fetchArticleById($id)
+    {
+        $article = Article::find($id);
+
+        return $this->successResponse(
+            $article,
+            "Fetched article successfully",
+            200
+        );
+    }
+
+    // Admin Privilege Required
     // Create Article
     public function createArticle(Request $request)
     {
@@ -37,4 +50,23 @@ class ArticleController extends BaseContoller
             201
         );
     }
+
+    // Delete Article
+    public function deleteArticle($id)
+    {
+        $article = Article::find($id);
+
+        if (!$article) {
+            return $this->errorResponse("Article not found", 404);
+        }
+
+        $article->delete();
+
+        return $this->successResponse(
+            null,
+            "Article deleted successfully",
+            200
+        );
+    }
+    // End of Admin Privilege Required
 }
