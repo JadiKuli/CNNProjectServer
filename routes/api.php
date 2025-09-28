@@ -2,11 +2,20 @@
 
 use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 // User - AuthController
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+// User - UserController
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/user', [UserController::class, 'fetchUserProfile']);
+    Route::put('/user', [UserController::class, 'updateUserProfile']);
+    Route::delete('/user', [UserController::class, 'deleteUserAccount']);
+    Route::post('/user/profile-picture', [UserController::class, 'updateProfilePicture']);
+});
 
 // Article - ArticleController
 Route::get('/articles', [ArticleController::class, 'fetchAllArticles']);

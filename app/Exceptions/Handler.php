@@ -10,7 +10,7 @@ class Handler extends ExceptionHandler
     protected function unauthenticated($request, \Illuminate\Auth\AuthenticationException $exception)
     {
         return response()->json([
-            'message' => 'Unauthorized'
+            'message' => 'Unauthorized, Please log in to access this resource.'
         ], 401);
     }
 }
