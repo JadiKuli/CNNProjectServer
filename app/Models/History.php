@@ -14,4 +14,15 @@ class History extends Model
         'user_id',
         'indication',
     ];
+
+    protected $hidden = [
+        'user_id',
+        'updated_at',
+    ];
+
+    // Relationship with User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

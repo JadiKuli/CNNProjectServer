@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Article\ArticleController;
+use App\Http\Controllers\History\HistoryController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,10 @@ Route::get('/articles/{id}', [ArticleController::class, 'fetchArticleById']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/articles', [ArticleController::class, 'createArticle'])->middleware('role:admin');
     Route::delete('/articles/{id}', [ArticleController::class, 'deleteArticle'])->middleware('role:admin');
+});
+
+// History - HistoryController
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/history', [HistoryController::class, 'createHistory']);
+    Route::get('/history', [HistoryController::class, 'fetchHistoryUser']);
 });
