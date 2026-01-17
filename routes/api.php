@@ -30,4 +30,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/history', [HistoryController::class, 'createHistory']);
     Route::get('/history', [HistoryController::class, 'fetchHistoryUser']);
+    Route::get('/history/latest', [HistoryController::class, 'fetchLatestHistory']);
 });

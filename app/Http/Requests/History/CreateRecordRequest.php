@@ -22,7 +22,7 @@ class CreateRecordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'indication' => 'required|string|max:255',
+            'image' => 'required|image|max:6144',
         ];
     }
 }
